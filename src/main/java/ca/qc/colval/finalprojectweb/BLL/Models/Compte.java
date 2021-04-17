@@ -1,12 +1,12 @@
 package ca.qc.colval.finalprojectweb.BLL.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Compte")
+@Table(name = "comptes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,9 +28,9 @@ public class Compte {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "contact_id")
-    @JsonIgnore
-    private Contact contact;
+    //@ManyToOne
+    //@JoinColumn(name = "contact_id")
+    //@JsonIgnore
+    //private Contact contact;
 
 }

@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Contact")
+@Table(name = "contacts")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,4 +20,7 @@ public class Contact {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "telephone")
+    private String telephone;
 }
