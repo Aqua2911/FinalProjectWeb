@@ -12,8 +12,8 @@ public class CompteServiceImpl implements CompteService {
     private final CompteRepository compteRepository;
 
     @Autowired
-    public CompteServiceImpl(CompteRepository customerRepository) {
-        this.compteRepository = customerRepository;
+    public CompteServiceImpl(CompteRepository compteRepository) {
+        this.compteRepository = compteRepository;
     }
 
     @Override
@@ -27,8 +27,15 @@ public class CompteServiceImpl implements CompteService {
     }
 
     @Override
-    public void save(CompteDTO compte) {
+    public Compte save(CompteDTO compte) {
 
+        Compte newCompte = new Compte();
+        newCompte.setFirstName(compte.getFirstName());
+        newCompte.setLastName(compte.getLastName());
+        newCompte.setUsername(compte.getUsername());
+        newCompte.setPassword(compte.getPassword());
+
+        return compteRepository.save(newCompte);
     }
 
     @Override

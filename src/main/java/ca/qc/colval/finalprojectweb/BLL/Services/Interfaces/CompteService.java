@@ -7,7 +7,8 @@ public interface CompteService {
     Compte create(Compte compte);
 
     void addContact(Compte compte);
-    void save(CompteDTO compte);
+
+    Compte  save(CompteDTO compte);
 
     void update(CompteDTO compte);
 }

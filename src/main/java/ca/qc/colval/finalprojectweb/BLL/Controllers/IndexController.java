@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
@@ -24,7 +22,7 @@ public class IndexController {
     }
 
     @GetMapping("")
-    public String index(Model model) {
+    public String index() {
         return "index/index";
     }
 
@@ -37,6 +35,12 @@ public class IndexController {
     public String addCompte(Model model) {
         model.addAttribute("compte", new CompteDTO());
         return "index/signup";
+    }
+
+    @PostMapping("save")
+    public String saveCompte(@Valid CompteDTO compte) {
+        Compte saved = compteService.save(compte);
+        return "redirect:/login";
     }
 
     @PostMapping("create")
