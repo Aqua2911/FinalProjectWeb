@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
@@ -9,6 +9,11 @@
   <h3>Connected with <span th:text="${compte.firstName} + ' ' + ${compte.lastName}"></span>!</h3>
   <h4>Credits :  <span th:text="${compte.credits}"></span></h4>
   <div class="login-form d-flex flex-column justify-content-center">
+      <form th:action="@{/compte/contacts}" method="get">
+          <div class="form-floating">
+              <button class="btn btn-outline-primary" type="submit">Contacts</button>
+          </div>
+      </form>
       <form th:action="@{addContact}" method="post">
           <div class="form-floating">
               <button class="btn btn-outline-primary" type="submit">Add Contact</button>

@@ -19,5 +19,5 @@ public class Phone {
     private String phoneNumber;
 
     @Column(name = "contact_id")
-    private String contactId;
+    private Long contactId;
 }

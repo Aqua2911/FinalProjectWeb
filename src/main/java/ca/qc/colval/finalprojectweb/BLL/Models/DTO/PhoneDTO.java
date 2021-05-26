@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class PhoneDTO {
     private Long phoneId;
     private String phoneNumber;
-    private int contactId;
+    private Long contactId;
 }
 

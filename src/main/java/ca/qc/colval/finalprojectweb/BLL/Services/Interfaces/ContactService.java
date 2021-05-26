@@ -15,7 +15,7 @@ public interface ContactService {
 
     Optional<Contact> search(ContactDTO contact);
 
-    //List<Contact> findContactByCompteId(Long compteId);
+    List<Contact> findContactByCompteId(Long compteId);
 
     //void addPhone(Contact contact);
 }

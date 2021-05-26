@@ -22,5 +22,5 @@ public class Contact {
     private String lastName;
 
     @Column(name = "compte_id")
-    private String compteId;
+    private Long compteId;
 }

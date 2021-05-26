@@ -44,12 +44,12 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.findByContactId(contact.getContactId());
     }
 
-    /*@Override
+    @Override
     public List<Contact> findContactByCompteId(Long compteId) {
-        return null;
+        return contactRepository.findByCompteId(compteId);
     }
 
-    @Override
+    /*@Override
     public void addPhone(Contact contact) {
 
     }*/

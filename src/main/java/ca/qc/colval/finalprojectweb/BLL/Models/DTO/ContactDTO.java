@@ -11,5 +11,5 @@ public class ContactDTO {
     private Long contactId;
     private String firstName;
     private String lastName;
-    private int compteId;
+    private Long compteId;
 }
