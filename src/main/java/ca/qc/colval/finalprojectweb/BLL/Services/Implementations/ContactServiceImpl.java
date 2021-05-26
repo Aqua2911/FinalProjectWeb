@@ -29,7 +29,7 @@ public class ContactServiceImpl implements ContactService {
         Contact newContact = new Contact();
         newContact.setFirstName(contact.getFirstName());
         newContact.setLastName(contact.getLastName());
-        newContact.setCompteId(newContact.getCompteId());
+        newContact.setCompteId(contact.getCompteId());
 
         return contactRepository.save(newContact);
     }
