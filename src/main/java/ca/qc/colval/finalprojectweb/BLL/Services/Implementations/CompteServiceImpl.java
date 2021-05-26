@@ -49,7 +49,7 @@ public class CompteServiceImpl implements CompteService {
     @Override
     public Optional<Compte> search(CompteDTO compte) {
         //System.out.println(compteRepository.findByLogin(compte.getUsername(), compte.getPassword()).stream().findFirst());
-        return compteRepository.findByLogin(compte.getUsername(), compte.getPassword()).stream().findFirst();
+        return compteRepository.findByLogin(compte.getUsername(), compte.getPassword());
     }
 
     @Override

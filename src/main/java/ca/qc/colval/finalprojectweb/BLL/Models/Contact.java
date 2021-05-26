@@ -21,6 +21,6 @@ public class Contact {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "telephone")
-    private String telephone;
+    @Column(name = "compte_id")
+    private String compteId;
 }
