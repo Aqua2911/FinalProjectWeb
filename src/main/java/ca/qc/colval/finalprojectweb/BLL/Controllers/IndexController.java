@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.swing.text.html.Option;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class IndexController {
@@ -27,7 +30,8 @@ public class IndexController {
     }
 
     @GetMapping("login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("compte", new CompteDTO());
         return "index/login";
     }
 
@@ -37,9 +41,23 @@ public class IndexController {
         return "index/signup";
     }
 
+    @PostMapping("search")
+    public String searchCompte(@Valid CompteDTO compte, RedirectAttributes rattrs){
+        Optional<Compte> compteForId = compteService.search(compte);
+        if (compteForId.isPresent())
+        {
+            rattrs.addAttribute("compteID",  compteForId.get().getCompteId());
+            return "redirect:/compte/connection";
+        }
+        else
+        {
+            return "redirect:/login";
+        }
+    }
+
     @PostMapping("save")
     public String saveCompte(@Valid CompteDTO compte) {
-        Compte saved = compteService.save(compte);
+        compteService.save(compte);
         return "redirect:/login";
     }
 

@@ -6,7 +6,8 @@
     <link rel="stylesheet" th:href="@{/login.css}"/>
 </head>
 <body>
-  <h3>Connected !</h3>
+  <h3>Connected with <span th:text="${compte.firstName} + ' ' + ${compte.lastName}"></span>!</h3>
+  <h4>Credits :  <span th:text="${compte.credits}"></span></h4>
   <div class="login-form d-flex flex-column justify-content-center">
       <form th:action="@{addContact}" method="post">
           <div class="form-floating">
@@ -30,7 +31,7 @@
               <button class="btn btn-outline-primary" type="submit">Add contact to a group</button>
           </div>
       </form>
-      <form th:action="@{addCredit}" method="post">
+      <form th:action="@{addCredits}" method="post">
           <div class="form-floating">
               <button class="btn btn-outline-primary" type="submit">Add credits</button>
           </div>

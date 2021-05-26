@@ -28,6 +28,9 @@ public class Compte {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "credits")
+    private double credits;
+
     //@ManyToOne
     //@JoinColumn(name = "contact_id")
     //@JsonIgnore
