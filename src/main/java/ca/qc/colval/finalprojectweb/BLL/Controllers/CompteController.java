@@ -6,10 +6,7 @@ import ca.qc.colval.finalprojectweb.BLL.Models.DTO.ContactDTO;
 import ca.qc.colval.finalprojectweb.BLL.Models.DTO.GroupDTO;
 import ca.qc.colval.finalprojectweb.BLL.Models.DTO.PhoneDTO;
 import ca.qc.colval.finalprojectweb.BLL.Models.Group;
-import ca.qc.colval.finalprojectweb.BLL.Services.Interfaces.CompteService;
-import ca.qc.colval.finalprojectweb.BLL.Services.Interfaces.ContactService;
-import ca.qc.colval.finalprojectweb.BLL.Services.Interfaces.GroupService;
-import ca.qc.colval.finalprojectweb.BLL.Services.Interfaces.PhoneService;
+import ca.qc.colval.finalprojectweb.BLL.Services.Interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,15 +22,17 @@ public class CompteController {
     private final ContactService contactService;
     private final PhoneService phoneService;
     private final GroupService groupService;
+    private final ServiceService serviceService;
     private Compte activeCompte;
     private Contact activeContact;
 
     @Autowired
-    public CompteController(CompteService compteService, ContactService contactService, PhoneService phoneService, GroupService groupService) {
+    public CompteController(CompteService compteService, ContactService contactService, PhoneService phoneService, GroupService groupService, ServiceService serviceService) {
         this.compteService = compteService;
         this.contactService = contactService;
         this.phoneService = phoneService;
         this.groupService = groupService;
+        this.serviceService = serviceService;
     }
 
     @GetMapping("connection")
@@ -133,5 +132,17 @@ public class CompteController {
         group.setCompteId(activeCompte.getCompteId());
         groupService.save(group);
         return "redirect:/compte/groups";
+    }
+
+    @PostMapping("contactDetail/call")
+    public String call(){
+        serviceService.addCall(activeCompte.getCompteId(), activeContact.getContactId());
+        return "redirect:/compte/homepage";
+    }
+
+    @PostMapping("contactDetail/SMS")
+    public String SMS(){
+        serviceService.addSMS(activeCompte.getCompteId(), activeContact.getContactId());
+        return "redirect:/compte/homepage";
     }
 }

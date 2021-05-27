@@ -14,11 +14,6 @@
               <button class="btn btn-outline-primary" type="submit">Contacts</button>
           </div>
       </form>
-      <!--        <th><form th:action="@{addPhone}" method="post">
-            <div class="form-floating">
-                <button class="btn btn-outline-primary" type="submit">Add phone to contact</button>
-            </div>
-        </form></th>-->
       <form th:action="@{/compte/groups}" method="get">
           <div class="form-floating">
               <button class="btn btn-outline-primary" type="submit">Groups</button>
@@ -29,29 +24,18 @@
               <button class="btn btn-outline-primary" type="submit">Add credits</button>
           </div>
       </form>
-      <form th:action="@{call}" method="post">
+      <form th:action="@{callHistory}" method="post">
           <div class="form-floating">
-              <button class="btn btn-outline-primary" type="submit">Make a phone call</button>
+              <button class="btn btn-outline-primary" type="submit">See phone calls history</button>
           </div>
-
-          <form th:action="@{SMS}" method="post">
-              <div class="form-floating">
-                  <button class="btn btn-outline-primary" type="submit">Send a SMS</button>
-              </div>
-          </form>
-
-          <form th:action="@{callHistory}" method="post">
-              <div class="form-floating">
-                  <button class="btn btn-outline-primary" type="submit">See phone calls history</button>
-              </div>
-          </form>
-
-          <form th:action="@{getBill}" method="post">
-              <div class="form-floating">
-                  <button class="btn btn-outline-primary" type="submit">Get bill</button>
-              </div>
-          </form>
       </form>
+
+      <form th:action="@{getBill}" method="post">
+          <div class="form-floating">
+              <button class="btn btn-outline-primary" type="submit">Get bill</button>
+          </div>
+      </form>
+
   </div>
 </body>
 </html>

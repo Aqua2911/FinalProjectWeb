@@ -41,9 +41,20 @@
       </select>
       <button type="submit" class="btn btn-success pull-right">Modify</button>
     </div>
-
   </form>
-
+  <br>
+  <form th:action="@{call}" method="post">
+    <div class="form-floating">
+      <button class="btn btn-outline-primary" type="submit">Make a phone call</button>
+    </div>
+  </form>
+  <br>
+  <form th:action="@{SMS}" method="post">
+    <div class="form-floating">
+      <button class="btn btn-outline-primary" type="submit">Send a SMS</button>
+    </div>
+  </form>
+  <br>
 </div>
 <table class="table table-dark">
   <thead>

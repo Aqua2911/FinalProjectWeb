@@ -46,6 +46,7 @@
         <td th:text="${contact.getFirstName()}"></td>
         <td th:text="${contact.getLastName()}"></td>
         <td><a th:href="${'/compte/contactDetail/' + contact.getContactId()}" th:text="Details"></a></td>
+
     </tr>
     </tbody>
 </table>

@@ -1,7 +1,5 @@
 package ca.qc.colval.finalprojectweb.BLL.Services.Interfaces;
 
-import ca.qc.colval.finalprojectweb.BLL.Models.Contact;
-import ca.qc.colval.finalprojectweb.BLL.Models.DTO.ContactDTO;
 import ca.qc.colval.finalprojectweb.BLL.Models.DTO.GroupDTO;
 import ca.qc.colval.finalprojectweb.BLL.Models.Group;
 
