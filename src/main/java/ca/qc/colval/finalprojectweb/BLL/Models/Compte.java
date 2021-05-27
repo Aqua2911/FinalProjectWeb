@@ -30,10 +30,4 @@ public class Compte {
 
     @Column(name = "credits")
     private double credits;
-
-    //@ManyToOne
-    //@JoinColumn(name = "contact_id")
-    //@JsonIgnore
-    //private Contact contact;
-
 }

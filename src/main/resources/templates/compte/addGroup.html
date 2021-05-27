@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+
+  <title>Add Group</title>
+  <link rel="stylesheet" th:href="@{/login.css}"/>
+</head>
+<body>
+
+<div class="customer-form">
+  <h1>Add Group</h1>
+
+  <form method="post" th:action="@{/compte/createGroup}" th:object="${group}" action="#">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label th:for="${#ids.next('groupName')}">Group Name</label>
+        <input required th:field="*{groupName}" type="text" class="form-control">
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success pull-right">Add</button>
+  </form>
+  <form th:action="@{groups}" method="get">
+    <div class="form-floating">
+      <button class="btn btn-outline-primary" type="submit">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

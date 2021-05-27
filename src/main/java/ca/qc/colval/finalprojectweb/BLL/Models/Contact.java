@@ -23,4 +23,7 @@ public class Contact {
 
     @Column(name = "compte_id")
     private Long compteId;
+
+    @Column(name = "group_id")
+    private Long groupId;
 }

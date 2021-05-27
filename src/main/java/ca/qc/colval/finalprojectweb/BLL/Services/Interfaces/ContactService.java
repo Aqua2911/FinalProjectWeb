@@ -11,7 +11,7 @@ public interface ContactService {
 
     Contact save(ContactDTO contact);
 
-    void update(ContactDTO contact);
+    void updateGroup(Contact contact);
 
     Optional<Contact> search(ContactDTO contact);
 

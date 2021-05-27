@@ -35,8 +35,9 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void update(ContactDTO contact) {
-
+    public void updateGroup(Contact contact) {
+        System.out.println("ContactService : " + contact);
+        contactRepository.updateGroup(contact.getContactId(), contact.getGroupId());
     }
 
     @Override

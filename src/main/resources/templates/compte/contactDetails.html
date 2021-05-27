@@ -30,6 +30,20 @@
 <div class="mt-2">
   <p>First Name: <u th:text="${contact.getFirstName()}"></u></p>
   <p>Last Name: <u th:text="${contact.getLastName()}"></u></p>
+  <p>Group : <u th:text="${currentGroup}"></u></p>
+
+  <form method="post" th:action="@{/compte/contactDetail/updateContactGroup}" th:object="${updatedGroup}" action="#">
+    <div class="form-row">
+      <label>Put in Group : </label>
+      <select th:field="*{groupId}">
+        <option th:value="null" th:text="None"></option>
+        <option th:each="group: ${groups}" th:text="${group.getGroupName()}" th:value="${group.getGroupId()}"></option>
+      </select>
+      <button type="submit" class="btn btn-success pull-right">Modify</button>
+    </div>
+
+  </form>
+
 </div>
 <table class="table table-dark">
   <thead>
