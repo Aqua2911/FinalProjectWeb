@@ -14,18 +14,11 @@
               <button class="btn btn-outline-primary" type="submit">Contacts</button>
           </div>
       </form>
-      <form th:action="@{addContact}" method="get">
-          <div class="form-floating">
-              <button class="btn btn-outline-primary" type="submit">Add Contact</button>
-          </div>
-      </form>
-
-      <form th:action="@{addPhone}" method="post">
-          <div class="form-floating">
-              <button class="btn btn-outline-primary" type="submit">Add phone to contact</button>
-          </div>
-      </form>
-
+      <!--        <th><form th:action="@{addPhone}" method="post">
+            <div class="form-floating">
+                <button class="btn btn-outline-primary" type="submit">Add phone to contact</button>
+            </div>
+        </form></th>-->
       <form th:action="@{addGroup}" method="post">
           <div class="form-floating">
               <button class="btn btn-outline-primary" type="submit">Add group</button>

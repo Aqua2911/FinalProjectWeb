@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+
+  <title>Details</title>
+</head>
+<body>
+
+<h3>Contact Details</h3>
+
+<form th:action="@{../homepage}" method="get">
+  <div class="form-floating">
+    <button class="btn btn-outline-primary" type="submit">Homepage</button>
+  </div>
+</form>
+<br>
+<form th:action="@{../contacts}" method="get">
+  <div class="form-floating">
+    <button class="btn btn-outline-primary" type="submit">Contacts</button>
+  </div>
+</form>
+<br>
+<form th:action="@{addPhone}" method="get">
+  <div class="form-floating">
+    <button class="btn btn-outline-primary" type="submit">Add Phone</button>
+  </div>
+</form>
+
+<div class="mt-2">
+  <p>First Name: <u th:text="${contact.getFirstName()}"></u></p>
+  <p>Last Name: <u th:text="${contact.getLastName()}"></u></p>
+</div>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th>Phone(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="phone: ${phones}">
+      <td th:text="${phone.getPhoneNumber()}"></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -22,10 +22,13 @@
                 <input required th:field="*{lastName}" type="text" class="form-control">
             </div>
         </div>
-
         <br>
-
         <button type="submit" class="btn btn-success pull-right">Add</button>
+    </form>
+    <form th:action="@{contacts}" method="get">
+        <div class="form-floating">
+            <button class="btn btn-outline-primary" type="submit">Cancel</button>
+        </div>
     </form>
 </div>
 </body>

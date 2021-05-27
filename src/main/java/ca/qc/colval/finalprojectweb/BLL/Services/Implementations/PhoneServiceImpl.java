@@ -2,7 +2,9 @@ package ca.qc.colval.finalprojectweb.BLL.Services.Implementations;
 
 import ca.qc.colval.finalprojectweb.BLL.Models.DTO.PhoneDTO;
 import ca.qc.colval.finalprojectweb.BLL.Models.Phone;
+import ca.qc.colval.finalprojectweb.BLL.Repositories.PhoneRepository;
 import ca.qc.colval.finalprojectweb.BLL.Services.Interfaces.PhoneService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,14 +12,25 @@ import java.util.Optional;
 
 @Service
 public class PhoneServiceImpl implements PhoneService {
+    private final PhoneRepository phoneRepository;
+
+    @Autowired
+    public PhoneServiceImpl(PhoneRepository phoneRepository) {
+        this.phoneRepository = phoneRepository;
+    }
+
     @Override
     public Phone create(Phone phone) {
-        return null;
+        return phoneRepository.save(phone);
     }
 
     @Override
     public Phone save(PhoneDTO phone) {
-        return null;
+        Phone newPhone = new Phone();
+        newPhone.setPhoneNumber(phone.getPhoneNumber());
+        newPhone.setContactId(phone.getContactId());
+
+        return phoneRepository.save(newPhone);
     }
 
     @Override
@@ -32,6 +45,6 @@ public class PhoneServiceImpl implements PhoneService {
 
     @Override
     public List<Phone> findPhoneByContactId(Long contactId) {
-        return null;
+        return phoneRepository.findByContactId(contactId);
     }
 }

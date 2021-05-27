@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+
+  <title>Add Phone</title>
+  <link rel="stylesheet" th:href="@{/login.css}"/>
+</head>
+<body>
+
+<div class="customer-form">
+  <h1>Add Phone</h1>
+
+  <form method="post" th:action="@{/compte/createPhone}" th:object="${phone}" action="#">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label th:for="${#ids.next('phoneNumber')}">Phone Number(s)</label>
+        <input required th:field="*{phoneNumber}" type="text" class="form-control">
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success pull-right">Add</button>
+  </form>
+  <form th:action="@{${contactID}}"  method="get">
+    <div class="form-floating">
+      <button class="btn btn-outline-primary" type="submit">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

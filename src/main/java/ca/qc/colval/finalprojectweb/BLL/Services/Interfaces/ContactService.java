@@ -17,5 +17,7 @@ public interface ContactService {
 
     List<Contact> findContactByCompteId(Long compteId);
 
+    Optional<Contact> readOne(Long id);
+
     //void addPhone(Contact contact);
 }

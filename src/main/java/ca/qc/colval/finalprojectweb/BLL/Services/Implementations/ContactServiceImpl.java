@@ -49,6 +49,10 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.findByCompteId(compteId);
     }
 
+    public Optional<Contact> readOne(Long id) {
+        return contactRepository.findById(id);
+    }
+
     /*@Override
     public void addPhone(Contact contact) {
 
