@@ -4,21 +4,23 @@
     <meta charset="UTF-8"/>
 
     <title>Sign Up</title>
-    <link rel="stylesheet" th:href="@{/login.css}"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
 
-<div class="customer-form">
-    <h1>Créer un compte</h1>
+<div class="container">
+    <h1>Create Account</h1>
 
     <form method="post" th:action="@{/save}" th:object="${compte}" action="#">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label th:for="${#ids.next('firstName')}">Prénom(s)</label>
+                <label th:for="${#ids.next('firstName')}">First Name</label>
                 <input required th:field="*{firstName}" type="text" class="form-control">
             </div>
             <div class="form-group col-md-6">
-                <label th:for="${#ids.next('lastName')}">Nom</label>
+                <label th:for="${#ids.next('lastName')}">Last Name</label>
                 <input required th:field="*{lastName}" type="text" class="form-control">
             </div>
             <div class="form-group col-md-6">
@@ -30,9 +32,7 @@
                 <input required th:field="*{password}" type="password" class="form-control">
             </div>
         </div>
-
         <br>
-
         <button type="submit" class="btn btn-success pull-right">Sign Up</button>
     </form>
 </div>

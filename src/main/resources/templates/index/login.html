@@ -4,23 +4,28 @@
     <meta charset="UTF-8"/>
 
     <title>Connexion</title>
-    <link rel="stylesheet" th:href="@{/login.css}"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
 </head>
 <body>
-<div class="login-form d-flex flex-column justify-content-center">
-    <h2>Connexion</h2>
-    <form method="post" th:action="@{/search}" th:object="${compte}" action="#">
-        <div class="form-floating">
-            <input type="text" id="username" name="username" class="form-control" placeholder="Nom d'utilisateur"/>
-            <label for="username">Nom d'utilisateur</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe"/>
-            <label for="password">Mot de passe</label>
-        </div>
+<div class="container">
+    <div class="login-form d-flex flex-column justify-content-center">
+        <h2>Connexion</h2>
+        <form method="post" th:action="@{/search}" th:object="${compte}" action="#">
+            <div class="form-floating">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Nom d'utilisateur"/>
+                <label for="username">Nom d'utilisateur</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe"/>
+                <label for="password">Mot de passe</label>
+            </div>
 
-        <button class="btn btn-outline-primary" type="submit">Connexion</button>
-    </form>
+            <button class="btn btn-outline-primary" type="submit">Connexion</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

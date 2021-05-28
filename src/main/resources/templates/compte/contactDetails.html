@@ -4,69 +4,73 @@
   <meta charset="UTF-8"/>
 
   <title>Details</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
+<div class="container">
+  <h3>Contact Details</h3>
 
-<h3>Contact Details</h3>
-
-<form th:action="@{../homepage}" method="get">
-  <div class="form-floating">
-    <button class="btn btn-outline-primary" type="submit">Homepage</button>
-  </div>
-</form>
-<br>
-<form th:action="@{../contacts}" method="get">
-  <div class="form-floating">
-    <button class="btn btn-outline-primary" type="submit">Contacts</button>
-  </div>
-</form>
-<br>
-<form th:action="@{addPhone}" method="get">
-  <div class="form-floating">
-    <button class="btn btn-outline-primary" type="submit">Add Phone</button>
-  </div>
-</form>
-
-<div class="mt-2">
-  <p>First Name: <u th:text="${contact.getFirstName()}"></u></p>
-  <p>Last Name: <u th:text="${contact.getLastName()}"></u></p>
-  <p>Group : <u th:text="${currentGroup}"></u></p>
-
-  <form method="post" th:action="@{/compte/contactDetail/updateContactGroup}" th:object="${updatedGroup}" action="#">
-    <div class="form-row">
-      <label>Put in Group : </label>
-      <select th:field="*{groupId}">
-        <option th:value="null" th:text="None"></option>
-        <option th:each="group: ${groups}" th:text="${group.getGroupName()}" th:value="${group.getGroupId()}"></option>
-      </select>
-      <button type="submit" class="btn btn-success pull-right">Modify</button>
-    </div>
-  </form>
-  <br>
-  <form th:action="@{call}" method="post">
+  <form th:action="@{../homepage}" method="get">
     <div class="form-floating">
-      <button class="btn btn-outline-primary" type="submit">Make a phone call</button>
+      <button class="btn btn-outline-primary" type="submit">Homepage</button>
     </div>
   </form>
   <br>
-  <form th:action="@{SMS}" method="post">
+  <form th:action="@{../contacts}" method="get">
     <div class="form-floating">
-      <button class="btn btn-outline-primary" type="submit">Send a SMS</button>
+      <button class="btn btn-outline-primary" type="submit">Contacts</button>
     </div>
   </form>
   <br>
-</div>
-<table class="table table-dark">
-  <thead>
+  <form th:action="@{addPhone}" method="get">
+    <div class="form-floating">
+      <button class="btn btn-outline-primary" type="submit">Add Phone</button>
+    </div>
+  </form>
+
+  <div class="mt-2">
+    <p>First Name: <u th:text="${contact.getFirstName()}"></u></p>
+    <p>Last Name: <u th:text="${contact.getLastName()}"></u></p>
+    <p>Group : <u th:text="${currentGroup}"></u></p>
+
+    <form method="post" th:action="@{/compte/contactDetail/updateContactGroup}" th:object="${updatedGroup}" action="#">
+      <div class="form-row">
+        <label>Put in Group : </label>
+        <select th:field="*{groupId}">
+          <option th:value="null" th:text="None"></option>
+          <option th:each="group: ${groups}" th:text="${group.getGroupName()}" th:value="${group.getGroupId()}"></option>
+        </select>
+        <button type="submit" class="btn btn-success pull-right">Modify</button>
+      </div>
+    </form>
+    <br>
+    <form th:action="@{call}" method="post">
+      <div class="form-floating">
+        <button class="btn btn-outline-primary" type="submit">Make a phone call</button>
+      </div>
+    </form>
+    <br>
+    <form th:action="@{SMS}" method="post">
+      <div class="form-floating">
+        <button class="btn btn-outline-primary" type="submit">Send a SMS</button>
+      </div>
+    </form>
+    <br>
+  </div>
+  <table class="table table-dark">
+    <thead>
     <tr>
       <th>Phone(s)</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr th:each="phone: ${phones}">
       <td th:text="${phone.getPhoneNumber()}"></td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
