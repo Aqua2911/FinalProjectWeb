@@ -49,6 +49,11 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
+    public List<Service> findByCompteId(Long compteId) {
+        return serviceRepository.findByCompteId(compteId);
+    }
+
+    @Override
     public List<Service> findByCompteIdAndContactId(Long compteId, Long contactId) {
         return serviceRepository.findByCompteIdAndContactId(compteId, contactId);
     }

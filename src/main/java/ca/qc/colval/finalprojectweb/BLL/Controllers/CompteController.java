@@ -2,18 +2,21 @@ package ca.qc.colval.finalprojectweb.BLL.Controllers;
 
 import ca.qc.colval.finalprojectweb.BLL.Models.Compte;
 import ca.qc.colval.finalprojectweb.BLL.Models.Contact;
-import ca.qc.colval.finalprojectweb.BLL.Models.DTO.ContactDTO;
-import ca.qc.colval.finalprojectweb.BLL.Models.DTO.GroupDTO;
-import ca.qc.colval.finalprojectweb.BLL.Models.DTO.PhoneDTO;
+import ca.qc.colval.finalprojectweb.BLL.Models.DTO.*;
 import ca.qc.colval.finalprojectweb.BLL.Models.Group;
+import ca.qc.colval.finalprojectweb.BLL.Models.Service;
 import ca.qc.colval.finalprojectweb.BLL.Services.Interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("compte")
@@ -35,6 +38,7 @@ public class CompteController {
         this.serviceService = serviceService;
     }
 
+    //DIRECTION HOMEPAGE
     @GetMapping("connection")
     public String connection(@ModelAttribute("compteID") String compteID){
         activeCompte = compteService.findCompteById(Long.parseLong(compteID));
@@ -44,15 +48,11 @@ public class CompteController {
     @GetMapping("homepage")
     public String homepage(Model model) {
         model.addAttribute("compte", activeCompte);
+        activeContact = null;
         return "compte/homepage";
     }
 
-    @PostMapping("addCredits")
-    public String addCredits(){
-        compteService.addCredits(activeCompte);
-        return "redirect:/compte/homepage";
-    }
-
+    //METHODS FROM HOMEPAGE
     @GetMapping("contacts")
     public String contacts(Model model) {
         List<Contact> contacts = contactService.findContactByCompteId(activeCompte.getCompteId());
@@ -61,6 +61,53 @@ public class CompteController {
         return "compte/contacts";
     }
 
+    @GetMapping("groups")
+    public String groups(Model model) {
+        List<Group> groups = groupService.findGroupByCompteId(activeCompte.getCompteId());
+        model.addAttribute("groups", groups);
+        model.addAttribute("groupsCount", groups.size());
+        return "compte/groups";
+    }
+
+    @PostMapping("addCredits")
+    public String addCredits(){
+        compteService.addCredits(activeCompte);
+        return "redirect:/compte/homepage";
+    }
+
+    @GetMapping("servicesHistory")
+    public String servicesHistory(Model model, ContactDTO filterContact) {
+        List<Service> services = new ArrayList<>();
+        Hashtable<Long, String> contactNamePerId = new Hashtable<>();
+
+        if(filterContact.getFirstName() == null || filterContact.getFirstName().equals("")){
+            services = serviceService.findByCompteId(activeCompte.getCompteId());
+            List<Contact> contactPerService = contactService.findContactByCompteId(activeCompte.getCompteId());
+            for (Contact contact: contactPerService) {
+                contactNamePerId.put(contact.getContactId(), contact.getFirstName());
+            }
+        }
+        else{
+            Optional<Contact> testContact = contactService.findByFirstNameAndCompteId(filterContact.getFirstName(), activeCompte.getCompteId());
+            if(testContact.isPresent()){
+                services = serviceService.findByCompteIdAndContactId(activeCompte.getCompteId(), testContact.get().getContactId());
+                contactNamePerId.put(testContact.get().getContactId(), testContact.get().getFirstName());
+            }
+        }
+        model.addAttribute("services", services);
+        model.addAttribute("contactNames", contactNamePerId);
+        model.addAttribute("totalCost", services.stream().mapToDouble(Service::getCost).sum());
+        model.addAttribute("filterContact", new ContactDTO());
+        return "compte/servicesHistory";
+    }
+
+    @PostMapping("logout")
+    public String logout(){
+        activeCompte = null;
+        return "redirect:../";
+    }
+
+    //METHODS FROM CONTACTS
     @GetMapping("addContact")
     public String createContact(Model model) {
         model.addAttribute("contact", new ContactDTO());
@@ -90,14 +137,7 @@ public class CompteController {
         return "/compte/contactDetails";
     }
 
-    @PostMapping("contactDetail/updateContactGroup")
-    public String updateContactGroup(@Valid Group group) {
-        System.out.println(group);
-        activeContact.setGroupId(group.getGroupId());
-        contactService.updateGroup(activeContact);
-        return "redirect:/compte/contactDetail/" + activeContact.getContactId();
-    }
-
+    //METHODS FROM CONTACT DETAIL
     @GetMapping("contactDetail/addPhone")
     public String createPhone(Model model) {
         model.addAttribute("phone", new PhoneDTO());
@@ -113,25 +153,12 @@ public class CompteController {
         return "redirect:/compte/contactDetail/" + activeContact.getContactId();
     }
 
-    @GetMapping("groups")
-    public String groups(Model model) {
-        List<Group> groups = groupService.findGroupByCompteId(activeCompte.getCompteId());
-        model.addAttribute("groups", groups);
-        model.addAttribute("groupsCount", groups.size());
-        return "compte/groups";
-    }
-
-    @GetMapping("addGroup")
-    public String createGroup(Model model) {
-        model.addAttribute("group", new GroupDTO());
-        return "compte/addGroup";
-    }
-
-    @PostMapping("createGroup")
-    public String createGroup(@Valid GroupDTO group) {
-        group.setCompteId(activeCompte.getCompteId());
-        groupService.save(group);
-        return "redirect:/compte/groups";
+    @PostMapping("contactDetail/updateContactGroup")
+    public String updateContactGroup(@Valid Group group) {
+        System.out.println(group);
+        activeContact.setGroupId(group.getGroupId());
+        contactService.updateGroup(activeContact);
+        return "redirect:/compte/contactDetail/" + activeContact.getContactId();
     }
 
     @PostMapping("contactDetail/call")
@@ -144,5 +171,19 @@ public class CompteController {
     public String SMS(){
         serviceService.addSMS(activeCompte.getCompteId(), activeContact.getContactId());
         return "redirect:/compte/homepage";
+    }
+
+    //METHODS FROM GROUPS
+    @GetMapping("addGroup")
+    public String createGroup(Model model) {
+        model.addAttribute("group", new GroupDTO());
+        return "compte/addGroup";
+    }
+
+    @PostMapping("createGroup")
+    public String createGroup(@Valid GroupDTO group) {
+        group.setCompteId(activeCompte.getCompteId());
+        groupService.save(group);
+        return "redirect:/compte/groups";
     }
 }

@@ -14,6 +14,9 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
     @Query("SELECT c FROM Contact c WHERE c.contactId = :contactId")
     Optional<Contact> findByContactId(Long contactId);
 
+    @Query("SELECT c FROM Contact c WHERE c.firstName = :firstName AND c.compteId = :compteId")
+    Optional<Contact> findByFirstNameAndCompteId(String firstName, Long compteId);
+
     @Query("SELECT c FROM Contact c WHERE c.compteId = :compteId")
     List<Contact> findByCompteId(Long compteId);
 

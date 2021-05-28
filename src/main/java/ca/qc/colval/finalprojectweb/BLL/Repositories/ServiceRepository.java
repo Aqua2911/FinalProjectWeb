@@ -12,5 +12,8 @@ public interface ServiceRepository extends JpaRepository<Service, Long> {
 
     @Query("SELECT s FROM Service s WHERE s.compteId = :compteId And s.contactId = :contactId")
     List<Service> findByCompteIdAndContactId(Long compteId, Long contactId);
+
+    @Query("SELECT s FROM Service s WHERE s.compteId = :compteId")
+    List<Service> findByCompteId(Long compteId);
 }
 

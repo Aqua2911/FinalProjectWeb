@@ -13,9 +13,13 @@ public interface ContactService {
 
     void updateGroup(Contact contact);
 
+    List<Contact> findAll();
+
     Optional<Contact> search(ContactDTO contact);
 
     List<Contact> findContactByCompteId(Long compteId);
+
+    Optional<Contact> findByFirstNameAndCompteId(String firstName, Long compteId);
 
     Optional<Contact> readOne(Long id);
 

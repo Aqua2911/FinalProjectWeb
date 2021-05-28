@@ -24,18 +24,16 @@
               <button class="btn btn-outline-primary" type="submit">Add credits</button>
           </div>
       </form>
-      <form th:action="@{callHistory}" method="post">
+      <form th:action="@{servicesHistory}" method="get">
           <div class="form-floating">
-              <button class="btn btn-outline-primary" type="submit">See phone calls history</button>
+              <button class="btn btn-outline-primary" type="submit">See services history</button>
           </div>
       </form>
-
-      <form th:action="@{getBill}" method="post">
+      <form th:action="@{logout}" method="post">
           <div class="form-floating">
-              <button class="btn btn-outline-primary" type="submit">Get bill</button>
+              <button class="btn btn-outline-primary" type="submit">Log Out</button>
           </div>
       </form>
-
   </div>
 </body>
 </html>

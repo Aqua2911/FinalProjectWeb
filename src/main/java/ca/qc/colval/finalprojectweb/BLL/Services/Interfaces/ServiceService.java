@@ -16,6 +16,8 @@ public interface ServiceService {
 
     Optional<Service> search(ServiceDTO service);
 
+    List<Service> findByCompteId(Long compteId);
+
     List<Service> findByCompteIdAndContactId(Long compteId, Long contactId);
 
     Optional<Service> readOne(Long id);

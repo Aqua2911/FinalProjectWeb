@@ -41,6 +41,11 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public List<Contact> findAll() {
+        return contactRepository.findAll();
+    }
+
+    @Override
     public Optional<Contact> search(ContactDTO contact) {
         return contactRepository.findByContactId(contact.getContactId());
     }
@@ -50,12 +55,12 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.findByCompteId(compteId);
     }
 
+    @Override
+    public Optional<Contact> findByFirstNameAndCompteId(String firstName, Long compteId) {
+        return contactRepository.findByFirstNameAndCompteId(firstName, compteId);
+    }
+
     public Optional<Contact> readOne(Long id) {
         return contactRepository.findById(id);
     }
-
-    /*@Override
-    public void addPhone(Contact contact) {
-
-    }*/
 }
